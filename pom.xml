@@ -10,9 +10,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>guli-generator</module>
+
         <module>gulimall-core</module>
         <module>gulimall-admin</module>
+
+
     </modules>
 
 
