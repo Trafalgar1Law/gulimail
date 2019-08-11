@@ -1,0 +1,50 @@
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: hello_route
+#          uri: lb://gulimall-oms
+#          predicates:
+#            - Path=/hello
+
+server:
+  port: 88
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: pms_route
+          uri: lb://gulimall-pms
+          predicates:
+            - Path=/pms/**
+
+        - id: oms_route
+          uri: lb://gulimall-oms
+          predicates:
+            - Path=/oms/**
+
+        - id: wms_route
+          uri: lb://gulimall-wms
+          predicates:
+              - Path=/wms/**
+
+
+        - id: sms_route
+          uri: lb://gulimall-sms
+          predicates:
+              - Path=/sms/**
+
+        - id: ums_route
+          uri: lb://gulimall-ums
+          predicates:
+              - Path=/ums/**
+
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: '*'
+#            allowedMethods: '*'
+#            #allowCredentials: true
+#            #允许携带cookie
+

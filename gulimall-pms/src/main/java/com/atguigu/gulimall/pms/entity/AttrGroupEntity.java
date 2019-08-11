@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.pms.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -7,6 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.stereotype.Repository;
 
 /**
  * 属性分组
@@ -18,6 +20,7 @@ import lombok.Data;
 @ApiModel
 @Data
 @TableName("pms_attr_group")
+
 public class AttrGroupEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

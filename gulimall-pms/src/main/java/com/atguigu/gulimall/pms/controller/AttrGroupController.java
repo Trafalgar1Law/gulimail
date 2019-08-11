@@ -7,8 +7,10 @@ import java.util.Map;
 import com.atguigu.gulimall.commons.bean.PageVo;
 import com.atguigu.gulimall.commons.bean.QueryCondition;
 import com.atguigu.gulimall.commons.bean.Resp;
+import com.atguigu.gulimall.pms.vo.AttrGroupWithAttrsVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,30 @@ import com.atguigu.gulimall.pms.service.AttrGroupService;
 public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
+
+    @ApiOperation("查询某个三级分类下的所有属性分组")
+    @GetMapping("/list/category/{catId}")
+    public Resp<PageVo> listCategory(
+            QueryCondition queryCondition,
+            @PathVariable(value = "catId",required = true) Integer catId
+            ){
+        PageVo pageVo=attrGroupService.queryPageAttrGroupsByCatId(queryCondition,catId);
+
+        //还要查出所有属性分组的所有属性
+
+        return Resp.ok(pageVo);
+    }
+
+    @ApiOperation("查询某个分组以及分组下面的所有属性信息")
+    @GetMapping("/info/withattrs/{attrGroupId}")
+    public Resp<AttrGroupWithAttrsVo> infoWithattrs(
+            @PathVariable("attrGroupId") Long attrGroupId
+            ){
+        AttrGroupWithAttrsVo attrGroupWithAttrsVo=attrGroupService.queryAttrGroupWithAttrs(attrGroupId);
+        return Resp.ok(attrGroupWithAttrsVo);
+    }
+
+//===========================================================================================
 
     /**
      * 列表

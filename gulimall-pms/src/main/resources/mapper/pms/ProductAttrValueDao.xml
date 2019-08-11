@@ -14,5 +14,13 @@
         <result property="quickShow" column="quick_show"/>
     </resultMap>
 
-
+    <insert id="insertBatch">
+        insert into `pms_product_attr_value`
+        (spu_id,attr_id,attr_name,attr_value,attr_sort,quick_show )
+        values 
+            <foreach collection="baseAttrs" item="baseAttr" separator=",">
+                (#{baseAttr.spuId},#{baseAttr.attrId},#{baseAttr.attrName},#{baseAttr.attrValue},
+                #{baseAttr.attrSort},#{baseAttr.quickShow})
+            </foreach>
+    </insert>
 </mapper>
